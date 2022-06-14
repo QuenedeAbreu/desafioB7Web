@@ -1,15 +1,16 @@
 # Start project
 
 Change the name of the .env.example file to just .env
+
 Now fill in the values ​​of the environment variables
   
   Variables   | Value
   --------- | ------
-  MYSQL_HOST =  | endereço do banco de dados
-  MYSQL_USER =  | usuário do banco de dados
+  MYSQL_HOST =  | database address
+  MYSQL_USER =  | database user
   MYSQL_PASSWORD =  | senha do banco de dados
-  MYSQL_DB =  | nome do banco de dados
-  MYSQL_PORT =   | porta do banco de dados
+  MYSQL_DB =  | database password
+  MYSQL_PORT =   | database port
 
 
 ## Available Scripts
