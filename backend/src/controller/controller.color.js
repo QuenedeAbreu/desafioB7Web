@@ -28,6 +28,27 @@ controles.color = async (req, res) => {
   }
 }
 
+//get a Color by Id
+controles.colorById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const colorOne = await color.findOne({
+      where: {
+        id
+      }
+    });
+    res.status(200).json({
+      colorOne
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: 'Error'
+    });
+  }
+}
+
+
 //Create Color
 controles.colorCreate = async (req, res) => {
   try {
@@ -75,23 +96,19 @@ controles.colorUpdate = async (req, res) => {
     const findColor = await color.findOne({ where: { id } });
 
     if (ValidateColor(colorHexadecimal || findColor.colorHexadecimal)) {
-      if (findColor && colorHexadecimal) {
-        res.status(400).json({
-          message: 'Essa cor já existe'
-        });
-      } else {
-        const colorOne = await color.update({
-          colorHexadecimal: colorHexadecimal || findColor.colorHexadecimal,
-          description
-        }, {
-          where: {
-            id
-          }
-        });
-        res.status(200).json({
-          colorOne
-        });
-      }
+
+      const colorOne = await color.update({
+        colorHexadecimal: colorHexadecimal || findColor.colorHexadecimal,
+        description
+      }, {
+        where: {
+          id
+        }
+      });
+      res.status(200).json({
+        colorOne
+      });
+
     } else {
       res.status(400).json({
         message: 'A cor não é valida'

@@ -1,5 +1,7 @@
 'use strict';
+
 module.exports = {
+
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('notes', {
       id: {
@@ -20,6 +22,8 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         foreignKey: true,
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
         references: {
           model: 'colors',
           key: 'id',

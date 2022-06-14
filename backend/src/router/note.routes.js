@@ -5,6 +5,7 @@ const controllerNote = require('../controller/controller.note');
 
 
 router.get('/', controllerNote.note);
+router.get('/:id', controllerNote.noteById);
 router.post('/', controllerNote.noteCreate);
 router.put('/:id', controllerNote.noteUpdate);
 router.delete('/:id', controllerNote.noteDelete);

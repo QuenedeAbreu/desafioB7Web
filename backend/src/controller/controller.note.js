@@ -6,7 +6,13 @@ const colors = require('../models/colors');
 // Get All Notes
 controles.note = async (req, res) => {
   try {
-    const notes = await note.findAll();
+    const notes = await note.findAll({
+      include: [{
+        model: colors,
+        as: 'color'
+
+      }]
+    });
     res.status(200).json({
       notes
     });
@@ -16,7 +22,31 @@ controles.note = async (req, res) => {
     res.status(500).json({
       message: 'Error'
     });
+  }
+}
 
+//Get a Note by Id
+controles.noteById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const noteOne = await note.findOne({
+      where: {
+        id
+      },
+      include: [{
+        model: colors,
+        as: 'color'
+      }]
+    });
+    res.status(200).json({
+      noteOne
+    });
+  } catch (error) {
+
+    console.log(error);
+    res.status(500).json({
+      message: 'Error'
+    });
   }
 }
 

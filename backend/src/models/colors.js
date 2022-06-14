@@ -17,6 +17,8 @@ const Colors = sequelize.define('colors', {
   }
 }
   , {
+    ondelete: 'CASCADE',
+    onUpdate: 'CASCADE',
     timestamps: true,
   }
 );
